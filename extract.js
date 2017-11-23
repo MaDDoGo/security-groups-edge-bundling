@@ -17,18 +17,7 @@ var params = {
 
 var extractPromise = function () {
   // console.log('Getting security groups');
-  var promise = new Promise(function (resolve, reject) {
-    ec2.describeSecurityGroups(params, function (err, data) {
-      // console.log('Got security groups');
-      if (err) {
-        // console.log(err, err.stack);
-        reject(err);
-      } else {
-        resolve(data);
-      }
-    });
-  });
-  return promise;
+  return ec2.describeSecurityGroups(params).promise();
 }
 
 module.exports = extractPromise;
